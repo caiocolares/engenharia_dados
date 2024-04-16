@@ -124,6 +124,13 @@ services:
       start_period: 30s
     restart: always
 
+  mongodb:
+    image: mongo:latest
+    container_name: mongo
+    networks: 
+      - broker-kafka
+    ports:
+      - '27017:27017'
 
   #KAFKA
   zookeeper:

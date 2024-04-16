@@ -2,13 +2,14 @@ from pyspark.sql import SparkSession
 from pyspark.sql.types import StructType, StructField, StringType, LongType, DoubleType, IntegerType
 from pyspark.sql.functions import *
 
-import pymongo
+from pymongo import MongoClient
 
 scala_version = '2.12'
 spark_version = '3.2.1'
 packages = [
     f'org.apache.spark:spark-sql-kafka-0-10_{scala_version}:{spark_version}',
-    'org.apache.kafka:kafka-clients:3.2.0'
+    'org.apache.kafka:kafka-clients:3.2.0',
+    "org.mongodb.spark:mongo-spark-connector_2.12:3.2.1"
 ]
 
 spark = SparkSession.builder \
@@ -43,31 +44,26 @@ schema = StructType([
     StructField("data", StringType(), True) 
 ])
 
-# Converter o valor da mensagem em uma string
-#df = df.selectExpr("CAST(value AS STRING)")
-
-# Converter a string JSON em um DataFrame
-#df_json = df.selectExpr(f"from_json(value, '{schema}') AS data").select("data.*")
 
 value_df = df.select(from_json(col("value").cast("string"), schema).alias("value"))
-df_json = value_df.selectExpr("value.Open", "value.Close")
+df_json = value_df.selectExpr("value.*")
 
+mongo_uri = "mongodb://mongo:27017"
+mongo_database = "CRYPTO_CURRENCY"
 
-def log_df(df, epoch_id):
-    value_df = df.select(from_json(col("value").cast("string"), schema).alias("value"))
-    df_json = value_df.select("value.*")
-    print(df_json.show())
+def write_to_mongodb(df, epoch_id):
+    client = MongoClient(mongo_uri)
+    db = client[mongo_database]
 
-#query = df \
-#    .writeStream \
-#    .foreachBatch(log_df) \
-#    .start()
+    data = df.toPandas()
+    for _, row in data.iterrows():
+        collection = db[row['ticker']]    
+        collection.insert_one({row['data']: row.to_json()})
+    client.close()
 
-query = df_json.writeStream\
-    .format("console")\
-    .outputMode("append") \
-    .start()
-
+query = df_json .writeStream \
+        .foreachBatch(write_to_mongodb) \
+        .start()
 
 print("Listening to kafka")
 query.awaitTermination(timeout=9999)

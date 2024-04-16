@@ -3,10 +3,11 @@ FROM docker.io/bitnami/spark:3
 # Install Kafka dependencies
 RUN /opt/bitnami/spark/bin/spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.2.1 --master local[2] --version
 RUN /opt/bitnami/spark/bin/spark-submit --packages org.apache.kafka:kafka-clients:3.2.0 --master local[2] --version
+RUN /opt/bitnami/spark/bin/spark-submit --packages org.mongodb.spark:mongo-spark-connector_2.12:3.0.1 --master local[2] --version
 
 USER root
 
-RUN pip install --no-cache-dir pymongo
+RUN pip install --no-cache-dir pymongo[srv]
 RUN pip install --no-cache-dir pandas
 
 CMD [ "/opt/bitnami/scripts/spark/run.sh" ]
