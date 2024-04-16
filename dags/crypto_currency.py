@@ -56,7 +56,8 @@ def get_history(ticker,ds=None, ds_nodash=None):
     df['data'] = pd.to_datetime(df.index, unit='s').strftime('%Y-%m-%d %H:%M')
     
     df_json = df.to_json(orient="records")
-    send_to_kafka("CRYPTO_CURRENCY", df_json)
+    for _, row in df.iterrows():
+        send_to_kafka("CRYPTO_CURRENCY", row.to_json())
 
 @dag(
   schedule_interval = "@daily",

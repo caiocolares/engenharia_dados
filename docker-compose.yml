@@ -171,7 +171,9 @@ services:
   #SPARK
 
   spark-master:
-    image: docker.io/bitnami/spark:3
+    build:
+     context: .
+     dockerfile: DockerfileSpark
     container_name: spark-master
     networks: 
       - broker-kafka
@@ -184,43 +186,46 @@ services:
       - SPARK_RPC_ENCRYPTION_ENABLED=no
       - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
       - SPARK_SSL_ENABLED=no
-    command: bash -c "bin/spark-class org.apache.spark.deploy.master.Master"
+    command: bash -c "/opt/bitnami/spark/bin/spark-class org.apache.spark.deploy.master.Master"
     ports:
       - "8888:8080"
       - "7077:7077"
   
   spark-worker1:
-    image: docker.io/bitnami/spark:3
+    #image: docker.io/bitnami/spark:3
+    build:
+     context: .
+     dockerfile: ./DockerfileSpark
     container_name: spark-worker1
     networks: 
       - broker-kafka
-    command: bash -c "bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077"
+    command: bash -c "/opt/bitnami/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077"
     depends_on:
       - spark-master
   
   spark-worker2:
-    image: docker.io/bitnami/spark:3
+    build:
+     context: .
+     dockerfile: ./DockerfileSpark
     container_name: spark-worker2
     networks: 
       - broker-kafka
-    command: bash -c "bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077"
+    command: bash -c "/opt/bitnami/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077"
     depends_on:
       - spark-master
 
   spark-submit-consumer:
-    image: docker.io/bitnami/spark:3
+    build:
+     context: .
+     dockerfile: ./DockerfileSpark
     container_name: spark-submit-consumer
     volumes:
       - ./spark:/home
     networks: 
       - broker-kafka
-    command: bash -c "bin/spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.2.0 /home/stream_kafka.py"
+    command: bash -c "/opt/bitnami/spark/bin/spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.2.4 /home/stream_kafka.py"
     depends_on:
       - spark-master
-
-       
-  
-  
 
   #END SPARK
 
