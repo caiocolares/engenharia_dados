@@ -6,7 +6,7 @@ from pyspark.sql.functions import *
 
 spark = SparkSession.builder \
    .appName("EngDados2") \
-    .master("spark://spark-master:7077") \
+   .master("spark://spark-master:7077") \
    .config("spark.executorEnv.PYSPARK_PYTHON", "/opt/bitnami/python/bin/python3") \
    .getOrCreate()
 
@@ -41,5 +41,5 @@ query = value_df.writeStream\
 
 
 print("Listening to kafka")
-query.awaitTermination(timeout=80)
+query.awaitTermination()
 
