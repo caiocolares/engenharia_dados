@@ -59,8 +59,8 @@ Access [airflow panel](http://localhost:8080)
 #### DAG
 ![image](https://github.com/caiocolares/engenharia_dados/blob/7546aba3bd367075dbcf7c90e162d2d578008c72/assets/airfow.png)
 
-User : airflow
-Password: airflow
+- User : airflow
+- Password: airflow
 
 Access [spark](http://localhost:8888)
 
@@ -81,11 +81,13 @@ Access [Kafdrop](http://localhost:19000)
 
 ## Tech Stack
 
-
-**Server:** Airflow, Pandas, Python, Apache Spark, Apache Kafka, Kafdrop, Docker, MongoDB, Redis, Postgres
-
-## Acknowledgements
-
+- [Python](https://www.python.org/)
 - [Airflow](https://airflow.apache.org/)
 - [Pandas](https://pandas.pydata.org/)
-
+- [Apache Spark](https://spark.apache.org/)
+- [Apache Kafka](https://kafka.apache.org/)
+- [Kafdrop](https://github.com/obsidiandynamics/kafdrop)
+- [Docker](https://www.docker.com/)
+- [MongoDB](https://www.mongodb.com/)
+- [Redis](https://redis.io/)
+- [PostgreSQL](https://www.postgresql.org/)
