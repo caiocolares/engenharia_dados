@@ -1,14 +1,15 @@
 
 # Data Engineering - MBA Unifor 
-Trabalho de Eng de Dados 2 - MBA Ciencias de Dados - Unifor
+Trabalho de Eng de Dados 2 - MBA Ciencias de Dados - Turma 5 - Unifor
 
 
 ![image](https://github.com/caiocolares/engenharia_dados/blob/7546aba3bd367075dbcf7c90e162d2d578008c72/assets/diagrama.png)
 
 ## Authors
 
-- [@caiocolares](https://www.github.com/caiocolares)
-
+- [@caiocolares](https://www.github.com/caiocolares) Matricula: 2316788
+- [@danielripardo](https://github.com/dankiest) Matricula: 2316591
+- [@rafaelreis](https://github.com/rafaelsreis) Matricula: 2316598
 
 
 ## Run Locally
