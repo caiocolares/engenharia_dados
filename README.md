@@ -65,16 +65,16 @@ Password: airflow
 Access [spark](http://localhost:8888)
 
 #### Spark: 1 master and 2 workers
-![image](https://github.com/caiocolares/engenharia_dados/assets/26276218/e50628a5-d4f7-4259-9754-1c5b2c5d9593)
+![image](https://github.com/caiocolares/engenharia_dados/blob/a1b797cad8aee922e09dd50f6d82d155781cb445/assets/spark.png)
 
 
 Access [Kafdrop](http://localhost:19000) 
 
 #### Kafka Messages
-![image](https://github.com/caiocolares/engenharia_dados/assets/26276218/e50628a5-d4f7-4259-9754-1c5b2c5d9593)
+![image](https://github.com/caiocolares/engenharia_dados/blob/a1b797cad8aee922e09dd50f6d82d155781cb445/assets/kafdrop.png)
 
 #### MongoDB (Using MongoDB Compass)
-![image](https://github.com/caiocolares/engenharia_dados/assets/26276218/e50628a5-d4f7-4259-9754-1c5b2c5d9593)
+![image](https://github.com/caiocolares/engenharia_dados/blob/a1b797cad8aee922e09dd50f6d82d155781cb445/assets/mongodata.png)
 
 
 
