@@ -3,7 +3,7 @@
 Trabalho de Eng de Dados 2 - MBA Ciencias de Dados - Unifor
 
 
-![image](https://github.com/caiocolares/engenharia_dados/assets/26276218/e50628a5-d4f7-4259-9754-1c5b2c5d9593)
+![image](https://github.com/caiocolares/engenharia_dados/blob/7546aba3bd367075dbcf7c90e162d2d578008c72/assets/diagrama.png)
 
 ## Authors
 
@@ -57,7 +57,7 @@ docker-compose up
 
 Access [airflow panel](http://localhost:8080)
 #### DAG
-![image](https://github.com/caiocolares/engenharia_dados/assets/26276218/e50628a5-d4f7-4259-9754-1c5b2c5d9593)
+![image](https://github.com/caiocolares/engenharia_dados/blob/7546aba3bd367075dbcf7c90e162d2d578008c72/assets/airfow.png)
 
 User : airflow
 Password: airflow
